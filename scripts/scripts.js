@@ -61,9 +61,10 @@ const miloLibs = setLibs(LIBS);
   });
 }());
 
-(async function loadPage() {
-  const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
-  const config = setConfig({ ...CONFIG, miloLibs });
-  console.log(config);
+const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
+const config = setConfig({ ...CONFIG, miloLibs });
+
+export default async function loadPage() {
   await loadArea();
-}());
+}
+await loadPage();
