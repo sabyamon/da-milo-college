@@ -8,7 +8,7 @@ Use this project template to create a Milo site.
 
 From your newly created project
 
-1. Install the [Helix Bot](https://github.com/apps/helix-bot/installations/new).
+1. Enable [AEM Code Sync](https://github.com/apps/aem-code-sync) on this repo.
 2. Change the fstab.yaml file to point to your content.
 3. Add the project to the [Helix Sidekick](https://github.com/adobe/helix-sidekick).
 4. Start creating your content.
