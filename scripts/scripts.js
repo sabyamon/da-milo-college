@@ -65,6 +65,10 @@ const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
 const config = setConfig({ ...CONFIG, miloLibs });
 
 export default async function loadPage() {
+  // TODO: Franklin "markup" doesn't do colspan in blocks correctly
+  const divs = document.querySelectorAll('div[class] div');
+  divs.forEach((div) => { if (div.innerHTML.trim() === '') div.remove(); });
+  
   await loadArea();
 }
 await loadPage();
