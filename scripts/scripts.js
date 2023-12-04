@@ -36,6 +36,12 @@ const CONFIG = {
 // Decorate the page with site specific needs.
 decorateArea();
 
+// Side-effects
+(async function daPreview() {
+  const { searchParams } = new URL(window.location.href);
+  if (searchParams.get('dapreview') === 'on') import('./dapreview.js');
+}());
+
 /*
  * ------------------------------------------------------------
  * Edit below at your own risk
