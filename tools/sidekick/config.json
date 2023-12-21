@@ -1,4 +1,12 @@
 {
+  "da": {
+    "library": {
+      "blocks": [
+        "https://main--milo--adobecom.hlx.page/docs/library/library.json",
+        "https://main--da-milo-college--adobecom.hlx.page/docs/library/library.json"
+      ]
+    }
+  },
   "plugins": [
     {
       "id": "library",
