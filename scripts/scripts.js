@@ -33,15 +33,6 @@ const CONFIG = {
   },
 };
 
-// Decorate the page with site specific needs.
-decorateArea();
-
-// Side-effects
-(async function daPreview() {
-  const { searchParams } = new URL(window.location.href);
-  if (searchParams.get('dapreview') === 'on') import('./dapreview.js');
-}());
-
 /*
  * ------------------------------------------------------------
  * Edit below at your own risk
@@ -61,14 +52,26 @@ const miloLibs = setLibs(LIBS);
   });
 }());
 
-const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
-const config = setConfig({ ...CONFIG, miloLibs });
-
 export default async function loadPage() {
   // TODO: Franklin "markup" doesn't do colspan in blocks correctly
   const divs = document.querySelectorAll('div[class] div');
   divs.forEach((div) => { if (div.innerHTML.trim() === '') div.remove(); });
   
+  // Decorate the page with site specific needs.
+  decorateArea();
+  
+  const { loadArea, setConfig } = await import(`${miloLibs}/utils/utils.js`);
+  const config = setConfig({ ...CONFIG, miloLibs });
+  
   await loadArea();
 }
+
+(async function daPreview() {
+  const { searchParams } = new URL(window.location.href);
+  if (searchParams.get('dapreview') === 'on') {
+    const { default: livePreview } = await import('https://da.live/scripts/dapreview.js');
+    livePreview(loadPage);
+  }
+}());
+
 await loadPage();
